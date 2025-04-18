@@ -32,7 +32,7 @@ public class DonationController : ControllerBase
         var authData = new { 
             grant_type = "client_credentials", 
             client_id = "33bhv7ruuoli8krralcn45faaf", 
-            client_secret = "", 
+            client_secret = "1bk30h1e2coq71p587s4dgpevof0o06r1ehao6987uj4p5rlu2ep", 
             scope = "im-au-09/5275a8f0-ecf2-013d-4cec-0a58a9feac03:59dbf14b-15b9-4bcc-b9cc-0313d5a9fc5d:3" };
 
         using StringContent authjsonContent = new(
