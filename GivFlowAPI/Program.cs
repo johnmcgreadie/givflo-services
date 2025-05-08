@@ -10,7 +10,7 @@ var connectionString = builder.Configuration.GetConnectionString("GivFlowAuthCon
 builder.Services.Configure<ConnectionStrings>(
     builder.Configuration.GetSection("ConnectionStrings"));
 
-builder.Services.Configure<Service>(
+builder.Services.Configure<BackendService>(
     builder.Configuration.GetSection("Service"));
 
 builder.Services.Configure<Website>(

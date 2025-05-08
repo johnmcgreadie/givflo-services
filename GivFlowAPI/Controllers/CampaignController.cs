@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using QRCoder;
-using Stripe;
 using Stripe.Terminal;
 using static System.Net.Mime.MediaTypeNames;
-using Service = GivFlow.Data.Configuration.Service;
+using Service = Stripe.Service;
 
 namespace GivFlowAPI.Controllers;
 
@@ -20,9 +19,9 @@ public class CampaignController : ControllerBase
 {
     private readonly ILogger<DonationController> _logger;
     private readonly IOptions<ConnectionStrings> _connectionStringsOptions;
-    private readonly IOptions<Service> _serviceOptions;
+    private readonly IOptions<BackendService> _serviceOptions;
 
-    public CampaignController(ILogger<DonationController> logger, IOptions<ConnectionStrings> connectionStringsOptions, IOptions<Service> serviceOptions)
+    public CampaignController(ILogger<DonationController> logger, IOptions<ConnectionStrings> connectionStringsOptions, IOptions<BackendService> serviceOptions)
     {
         _logger = logger;
         _connectionStringsOptions = connectionStringsOptions;

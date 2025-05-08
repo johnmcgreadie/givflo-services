@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Terminal;
-using GivFlowAPI.Zai;
+
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -69,43 +69,7 @@ public class PaymentController : ControllerBase
     [HttpPost]
     public async Task<JsonResult> Zai()
     {
-        HttpClient authClient = new HttpClient();
-
-        authClient.BaseAddress = new Uri("https://au-0000.sandbox.auth.assemblypay.com");
-
-        var authData = new
-        {
-            grant_type = "client_credentials",
-            client_id = "33bhv7ruuoli8krralcn45faaf",
-            client_secret = "1bk30h1e2coq71p587s4dgpevof0o06r1ehao6987uj4p5rlu2ep",
-            scope = "im-au-09/5275a8f0-ecf2-013d-4cec-0a58a9feac03:59dbf14b-15b9-4bcc-b9cc-0313d5a9fc5d:3"
-        };
-
-        using StringContent authjsonContent = new(
-            JsonSerializer.Serialize(authData),
-            Encoding.UTF8,
-            "application/json");
-
-        var authResponse = await authClient.PostAsync("tokens", authjsonContent);
-
-        using StringContent userJsonContent = new(
-            JsonSerializer.Serialize(new AnonymousUser()),
-            Encoding.UTF8,
-            "application/json");
-
-        var tokenResponse = await authResponse.Content.ReadFromJsonAsync<TokenResponse>();
-
-        HttpClient c = new HttpClient();
-        c.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", tokenResponse.AccessToken);
-
-        c.BaseAddress = new Uri("https://test.api.promisepay.com");
-
-        var response = await c.PostAsync("items", userJsonContent);
-
-        var userResponse = await response.Content.ReadFromJsonAsync<UserResponse>();
-
-        return new JsonResult(userResponse);
+        return new JsonResult(null);
     }
 
 }

@@ -22,4 +22,7 @@ public partial class Campaign
     public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
 
     public virtual Organisation Organisation { get; set; } = null!;
+
+    public virtual Account DefaultAccount { get; set; } = null!;
+    
 }

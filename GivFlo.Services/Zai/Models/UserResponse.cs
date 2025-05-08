@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GivFlowAPI.Zai
+namespace GivFlo.Services.Zai.Models
 {
 
     public class UserResponse

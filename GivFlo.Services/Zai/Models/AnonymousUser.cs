@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GivFlowAPI.Zai
+namespace GivFlo.Services.Zai.Models
 {
     public class AnonymousUser
     {
@@ -9,20 +9,20 @@ namespace GivFlowAPI.Zai
             Id = $"givflo-anon{DateTime.Now.Ticks}";
 
         }
-        [JsonPropertyName("id")] 
-        public String Id { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [JsonPropertyName("first_name")]
-        public String FirstName => $"{Id}";
+        public string FirstName => $"{Id}";
 
         [JsonPropertyName("last_name")]
-        public String LastName => $"{Id}";
+        public string LastName => $"{Id}";
 
         [JsonPropertyName("email")]
-        public String Email => $"{Id}@givflo.com";
+        public string Email => $"{Id}@givflo.com";
 
         [JsonPropertyName("country")]
-        public String Country => $"AUS";
+        public string Country => $"AUS";
     }
 
 }

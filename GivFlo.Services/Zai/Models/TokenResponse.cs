@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GivFlowAPI.Zai
+namespace GivFlo.Services.Zai.Models
 {
     public class TokenResponse
     {
         [JsonPropertyName("access_token")]
-        public String AccessToken { get; set; }
+        public string AccessToken { get; set; }
     }
 }

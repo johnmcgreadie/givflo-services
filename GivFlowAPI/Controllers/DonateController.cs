@@ -1,3 +1,4 @@
+using GivFlo.Services.Zai;
 using GivFlow.Data;
 using GivFlow.Data.Configuration;
 using GivFlowAPI.Dtos;
@@ -15,17 +16,20 @@ public class DonateController : ControllerBase
     private readonly ILogger<DonationController> _logger;
     private readonly IOptions<ConnectionStrings> _connectionStrings;
     private readonly IOptions<Website> _websiteOptions;
-    public DonateController(ILogger<DonationController> logger, IOptions<ConnectionStrings> options, IOptions<Website> websiteOptions)
+    private readonly IOptions<ZaiSettings> _zaiOptions;
+
+    public DonateController(ILogger<DonationController> logger, IOptions<ConnectionStrings> options, IOptions<Website> websiteOptions, IOptions<ZaiSettings> zaiOptions)
     {
         _logger = logger;
         _connectionStrings = options;
         _websiteOptions = websiteOptions;
+        _zaiOptions = zaiOptions;
     }
 
 
     [HttpGet]
     [Route("{organisationGuid}/{campaignGuid}")]
-    public ActionResult Donate(string organisationGuid, string campaignGuid)
+    public ActionResult Donation(string organisationGuid, string campaignGuid)
     {
         using (var context = new GivFlowContext(_connectionStrings.Value.GivFlowAuthConnection))
         {
@@ -43,4 +47,20 @@ public class DonateController : ControllerBase
         }
     }
 
+    [HttpPost]
+    public async Task<JsonResult> Donate(MakeDonationDto donation)
+    {
+        var client = new ZaiClient(_zaiOptions);
+
+        var result = await client.CreateItem(donation.BuyerId, "givflo-anon638823110896050081", donation.Amount);
+
+        if (result != null)
+        {
+            var cardToken = await client.MakePayment(result.Items.Id, donation.AccountId);
+
+            return new JsonResult(cardToken);
+        }
+
+        return new JsonResult(null);
+    }
 }

@@ -31,7 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GivFlo.Configuration\GivFlo.Configuration.csproj" />
+    <ProjectReference Include="..\GivFlo.Services\GivFlo.Services.csproj" />
     <ProjectReference Include="..\GivFlow.Data\GivFlow.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

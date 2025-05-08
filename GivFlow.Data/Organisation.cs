@@ -16,4 +16,6 @@ public partial class Organisation
     public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
 
     public virtual ICollection<Donation> Donations { get; set; } = new List<Donation>();
+
+    public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
 }
